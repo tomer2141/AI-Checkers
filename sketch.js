@@ -4,7 +4,7 @@ var userCoin;
 var aiCoin;
 var turn;
 var userCoinsLeft = 12;
-var aiCoinsLeft = 2;
+var aiCoinsLeft = 12;
 var gameStart = false;
 var winner = false;
 // Creating the game array
@@ -40,13 +40,9 @@ function coinClicked(coin){
   //divTurn.html(["<p> Its <b class="+turn+">"+turn+"</b> turn</p><p>AI: <b class="+aiCoin+">"+aiCoin+"</b> - coins left: "+aiCoinsLeft+"</p><p>You: <b class="+userCoin+">"+userCoin+"</b> - coins left: "+userCoinsLeft+"</p>"])
 }
 
-function setup(restartSetup) {
+function setup() {
 createCanvas(644, 644);
-if (restartSetup) {
-  divTurn.html(['<p>'+turnText+'</p> <button class="selectCoin redCoin" onclick=coinClicked("red")></button><button onclick=coinClicked("green") class="selectCoin greenCoin"></button>']);
-}else{
   divTurn = createDiv(['<p>'+turnText+'</p> <button class="selectCoin redCoin" onclick=coinClicked("red")></button><button onclick=coinClicked("green") class="selectCoin greenCoin"></button>']).id('turn-style');
-}
 grid = gridLayout(8, 8);
 for (var i = 0; i < 8; i++) {
     for (var j = 0; j < 8; j++) {
@@ -139,8 +135,8 @@ function restart(){
    aiCoinsLeft = 2;
    gameStart = false;
    winner = false;
-   setup(true);
-   //divTurn.html(['<p>'+turnText+'</p> <button class="selectCoin redCoin" onclick=coinClicked("red")></button><button onclick=coinClicked("green") class="selectCoin greenCoin"></button>']);
+   divTurn.remove();
+   setup();
 }
 
 function checkWin(){
